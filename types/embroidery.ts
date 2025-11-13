@@ -1,11 +1,27 @@
-export type EmbroideryResult = {
-  id: string;
-  title: string;
-  thumbnail?: string;
-  createdAt?: string;
-  tags?: string[];
-  metadata?: Record<string, any>;
-};
+export type EmbroideryStyle = "cross-stitch" | "satin" | "running" | "french-knot";
 
-export type EmbroideryStyle = "cross-stitch" | "satin" | "running" | "other";
-export type EmbroideryCategory = "image" | "text" | "pattern" | "other";
+export type EmbroideryCategory = "image" | "logo" | "font" | "tattoo";
+
+export type FilterType = "style" | "color" | "complexity" | "size";
+
+export interface CategoryFilter {
+  id: string;
+  label: string;
+  type: FilterType;
+  options: string[];
+}
+
+export interface EmbroideryResult {
+  id: string;
+  imageUri: string;
+  category: EmbroideryCategory;
+  style: EmbroideryStyle;
+  timestamp: number;
+  originalImageUri?: string;
+  filters?: {
+    style?: string;
+    color?: string;
+    complexity?: string;
+    size?: string;
+  };
+}
